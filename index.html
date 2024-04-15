@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Ondas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora de Ondas</h2>
+    <label for="temperatura">Temperatura (°C):</label>
+    <input type="number" id="temperatura" placeholder="Ingrese la temperatura">
+
+    <label for="frecuencia">Frecuencia (Hz):</label>
+    <input type="number" id="frecuencia" placeholder="Ingrese la frecuencia">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultados"></div>
+</div>
+
+<script>
+function calcular() {
+    var temperatura = parseFloat(document.getElementById('temperatura').value);
+    var frecuencia = parseFloat(document.getElementById('frecuencia').value);
+    var velocidadSonido = 331.4 + 0.6 * temperatura;
+
+    var periodo = 1 / frecuencia;
+    var longitudOnda = velocidadSonido / frecuencia;
+    var mediaLongitudOnda = longitudOnda / 2;
+    var tercioLongitudOnda = longitudOnda / 3;
+    var cuartoLongitudOnda = longitudOnda / 4;
+
+    var retardoPeriodo = periodo / velocidadSonido;
+    var retardoLongitudOnda = longitudOnda / velocidadSonido;
+    var retardoMediaLongitudOnda = mediaLongitudOnda / velocidadSonido;
+    var retardoTercioLongitudOnda = tercioLongitudOnda / velocidadSonido;
+    var retardoCuartoLongitudOnda = cuartoLongitudOnda / velocidadSonido;
+
+    var resultadosHTML = "<h3>Resultados:</h3>";
+    resultadosHTML += "<p>Periodo de la onda: " + periodo.toFixed(5) + " segundos (Retardo: " + retardoPeriodo.toFixed(5) + " segundos)</p>";
+    resultadosHTML += "<p>Longitud de onda: " + longitudOnda.toFixed(5) + " metros (Retardo: " + retardoLongitudOnda.toFixed(5) + " segundos)</p>";
+    resultadosHTML += "<p>Media longitud de onda: " + mediaLongitudOnda.toFixed(5) + " metros (Retardo: " + retardoMediaLongitudOnda.toFixed(5) + " segundos)</p>";
+    resultadosHTML += "<p>Un tercio de longitud de onda: " + tercioLongitudOnda.toFixed(5) + " metros (Retardo: " + retardoTercioLongitudOnda.toFixed(5) + " segundos)</p>";
+    resultadosHTML += "<p>Un cuarto de longitud de onda: " + cuartoLongitudOnda.toFixed(5) + " metros (Retardo: " + retardoCuartoLongitudOnda.toFixed(5) + " segundos)</p>";
+
+    document.getElementById('resultados').innerHTML = resultadosHTML;
+}
+</script>
+
+</body>
+</html>
